@@ -31,7 +31,7 @@ public class UserController {
     @PostMapping("/validUser")
     public ResponseEntity<Boolean> userExists(@RequestBody User user) {
         try {
-            Optional<User> byUserNameAndPassword = userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+            Optional<User> byUserNameAndPassword = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
             if (byUserNameAndPassword.isPresent()) {
                 return new ResponseEntity<>(true, HttpStatus.OK);
             } else{
